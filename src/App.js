@@ -3,11 +3,11 @@ import './App.css';
 import { SplitScreen } from './SplitScreen/SplitScreen';
 
 const LeftHandComponent = () => {
-  return <h1>Left Component!</h1>;
+  return <h1 style={{backgroundColor: 'green'}}>Left Component!</h1>;
 }
 
 const RightHandComponent = () => {
-  return <p>Right Component!</p>
+  return <p style={{backgroundColor: 'yellow'}}>Right Component!</p>
 }
 
 function App() {

@@ -9,18 +9,21 @@ const Pane = styled.div`
 `;
 
 export const SplitScreen = ({
-    left: Left,
-    right: Right,
+    children,
     leftWeight = 1,
     rightWeight = 1
 }) => {
+
+    const [left, right] = children;
+
     return (
+        
         <Container>
             <Pane weight={leftWeight}>
-                <Left />
+                 {left}
             </Pane>
             <Pane weight={rightWeight}>
-                <Right />
+                 {right}
             </Pane>
         </Container>
     )

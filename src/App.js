@@ -2,21 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import { SplitScreen } from './SplitScreen/SplitScreen';
 
-const LeftHandComponent = () => {
-  return <h1 style={{backgroundColor: 'green'}}>Left Component!</h1>;
+const LeftHandComponent = ({name}) => {
+  return <h1 style={{backgroundColor: 'green'}}>{name}</h1>;
 }
 
-const RightHandComponent = () => {
-  return <p style={{backgroundColor: 'yellow'}}>Right Component!</p>
+const RightHandComponent = ({message}) => {
+  return <p style={{backgroundColor: 'yellow'}}>{message}</p>
 }
 
 function App() {
   return (
-    <SplitScreen left={LeftHandComponent} 
-      right={RightHandComponent}
-      leftWeight={1}
-      rightWeight={3}>
-
+    <SplitScreen leftWeight={1} rightWeight={3}>
+        <LeftHandComponent name="Nadee Sansari"/> 
+        <RightHandComponent message="Try your best"/>
     </SplitScreen>
   );
 }

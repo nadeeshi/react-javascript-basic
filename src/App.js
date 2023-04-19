@@ -6,6 +6,7 @@ import { LargePersonListItem } from './Lists/Person/LargePersonListItem';
 import { SmallProductListItem } from './Lists/Products/SmallProductListItem';
 import { LargeProductListItem } from './Lists/Products/LargeProductListItem';
 import { NumberedList } from './Lists/NumberedList';
+import { Modal } from './Components/Modals/Modal';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -81,10 +82,17 @@ const RightHandComponent = ({message}) => {
 
 function App() {
   return (
+    <>
     <SplitScreen leftWeight={1} rightWeight={3}>
         <LeftHandComponent name="People Details"/> 
         <RightHandComponent message="Product Details"/>
     </SplitScreen>
+    <Modal>
+        <LargeProductListItem product={products[0]}/>
+    </Modal>
+    </>
+    
+
   );
 }
 

@@ -7,6 +7,9 @@ import { SmallProductListItem } from './Lists/Products/SmallProductListItem';
 import { LargeProductListItem } from './Lists/Products/LargeProductListItem';
 import { NumberedList } from './Lists/NumberedList';
 import { Modal } from './Components/Modals/Modal';
+import { CurrentUserLoader } from './Components/Container/CurrentUserLoader';
+import { UserInfo } from './Components/Container/UserInfo';
+import { UserLoader } from './Components/Container/UserLoader';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -90,6 +93,12 @@ function App() {
     <Modal>
         <LargeProductListItem product={products[0]}/>
     </Modal>
+    <CurrentUserLoader>
+        <UserInfo />
+    </CurrentUserLoader>
+    <UserLoader userId={"124"}>
+        <UserInfo />
+    </UserLoader>
     </>
     
 

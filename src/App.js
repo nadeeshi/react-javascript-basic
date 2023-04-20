@@ -9,6 +9,7 @@ import { NumberedList } from './Lists/NumberedList';
 import { Modal } from './Components/Modals/Modal';
 import { CurrentUserLoader } from './Components/Container/CurrentUserLoader';
 import { UserInfo } from './Components/Container/UserInfo';
+import { UserLoader } from './Components/Container/UserLoader';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -95,6 +96,9 @@ function App() {
     <CurrentUserLoader>
         <UserInfo />
     </CurrentUserLoader>
+    <UserLoader userId={"124"}>
+        <UserInfo />
+    </UserLoader>
     </>
     
 

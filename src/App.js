@@ -11,6 +11,8 @@ import { CurrentUserLoader } from './Components/Container/CurrentUserLoader';
 import { UserInfo } from './Components/Container/UserInfo';
 import { UserLoader } from './Components/Container/UserLoader';
 import { ResourceLoader } from './Components/Container/ResourceLoader';
+import { DataSourceLoader } from './Components/Container/DataSource';
+import axios from 'axios';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -104,6 +106,13 @@ function App() {
     <ResourceLoader resourceUrl="/users/123" resourceName="user">
         <UserInfo />
     </ResourceLoader>
+
+    <DataSourceLoader getDataFunc={ async () => {
+        const response = await axios.get('/users/123');
+        return response.data;
+    }} resourceName="user">
+        <UserInfo />
+    </DataSourceLoader>
     </>
     
 

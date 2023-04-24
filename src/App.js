@@ -86,6 +86,17 @@ const RightHandComponent = ({message}) => {
     </>
 }
 
+const getServerData = url => async () => {
+  const response = await axios.get('/users/123');
+  return response.data;
+}
+
+const getLocalStorageData = key => () => {
+  return localStorage.getItem(key);
+}
+
+const Text = ({message}) => <h1>{message}</h1>
+
 function App() {
   return (
     <>
@@ -107,15 +118,14 @@ function App() {
         <UserInfo />
     </ResourceLoader>
 
-    <DataSourceLoader getDataFunc={ async () => {
-        const response = await axios.get('/users/123');
-        return response.data;
-    }} resourceName="user">
+    <DataSourceLoader getDataFunc={ getServerData('/users/123')} resourceName="user">
         <UserInfo />
     </DataSourceLoader>
+   
+    <DataSourceLoader getDataFunc={getLocalStorageData('message')} resourceName="message">
+          <Text />
+    </DataSourceLoader>
     </>
-    
-
   );
 }
 

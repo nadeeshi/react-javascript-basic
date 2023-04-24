@@ -10,6 +10,9 @@ import { Modal } from './Components/Modals/Modal';
 import { CurrentUserLoader } from './Components/Container/CurrentUserLoader';
 import { UserInfo } from './Components/Container/UserInfo';
 import { UserLoader } from './Components/Container/UserLoader';
+import { ResourceLoader } from './Components/Container/ResourceLoader';
+import { DataSourceLoader } from './Components/Container/DataSource';
+import axios from 'axios';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -83,6 +86,17 @@ const RightHandComponent = ({message}) => {
     </>
 }
 
+const getServerData = url => async () => {
+  const response = await axios.get('/users/123');
+  return response.data;
+}
+
+const getLocalStorageData = key => () => {
+  return localStorage.getItem(key);
+}
+
+const Text = ({message}) => <h1>{message}</h1>
+
 function App() {
   return (
     <>
@@ -99,9 +113,19 @@ function App() {
     <UserLoader userId={"124"}>
         <UserInfo />
     </UserLoader>
-    </>
-    
 
+    <ResourceLoader resourceUrl="/users/123" resourceName="user">
+        <UserInfo />
+    </ResourceLoader>
+
+    <DataSourceLoader getDataFunc={ getServerData('/users/123')} resourceName="user">
+        <UserInfo />
+    </DataSourceLoader>
+   
+    <DataSourceLoader getDataFunc={getLocalStorageData('message')} resourceName="message">
+          <Text />
+    </DataSourceLoader>
+    </>
   );
 }
 

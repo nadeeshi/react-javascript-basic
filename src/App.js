@@ -10,6 +10,7 @@ import { Modal } from './Components/Modals/Modal';
 import { CurrentUserLoader } from './Components/Container/CurrentUserLoader';
 import { UserInfo } from './Components/Container/UserInfo';
 import { UserLoader } from './Components/Container/UserLoader';
+import { ResourceLoader } from './Components/Container/ResourceLoader';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -99,6 +100,10 @@ function App() {
     <UserLoader userId={"124"}>
         <UserInfo />
     </UserLoader>
+
+    <ResourceLoader resourceUrl="/users/123" resourceName="user">
+        <UserInfo />
+    </ResourceLoader>
     </>
     
 

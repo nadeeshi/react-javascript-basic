@@ -13,6 +13,7 @@ import { UserLoader } from './Components/Container/UserLoader';
 import { ResourceLoader } from './Components/Container/ResourceLoader';
 import { DataSourceLoader } from './Components/Container/DataSource';
 import axios from 'axios';
+import { UncontrolledForm } from './Components/Forms/UncontrolledForm';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -125,6 +126,8 @@ function App() {
     <DataSourceLoader getDataFunc={getLocalStorageData('message')} resourceName="message">
           <Text />
     </DataSourceLoader>
+
+    <UncontrolledForm />
     </>
   );
 }

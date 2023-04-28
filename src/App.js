@@ -14,6 +14,7 @@ import { ResourceLoader } from './Components/Container/ResourceLoader';
 import { DataSourceLoader } from './Components/Container/DataSource';
 import axios from 'axios';
 import { UncontrolledForm } from './Components/Forms/UncontrolledForm';
+import { ControlledForm } from './Components/Forms/ControlledForm';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -128,6 +129,8 @@ function App() {
     </DataSourceLoader>
 
     <UncontrolledForm />
+
+    <ControlledForm />
     </>
   );
 }

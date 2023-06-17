@@ -21,6 +21,7 @@ import { UncontrolledOnboardingFlow } from './Components/OnboardingFlows/Uncontr
 import { ControlledOnboardingFlow } from './Components/OnboardingFlows/ControlledOnboardingFlows';
 import { printProps } from './Components/HighOrderComponents/printProps';
 import { withUser } from './Components/HighOrderComponents/withUser';
+import { UserInfoForm } from './Components/HighOrderComponents/userInfoForm';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -224,6 +225,9 @@ const StepThree = ({ goToNext }) => (
 
     {/** Loading data with HOCs */}
     <UserInfoWithLoader />
+
+    {/** creating forms data with HOCs */}
+    <UserInfoForm />
 
     <br /><br />
     </>

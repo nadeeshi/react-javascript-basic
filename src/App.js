@@ -17,6 +17,7 @@ import { UncontrolledForm } from './Components/Forms/UncontrolledForm';
 import { ControlledForm } from './Components/Forms/ControlledForm';
 import { ControlledModal } from './Components/Modals/ControlledModal';
 import { useState } from 'react';
+import { UncontrolledOnboardingFlow } from './Components/OnboardingFlows/UncontrolledOnboardingFlows';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -104,6 +105,28 @@ const Text = ({message}) => <h1>{message}</h1>
 function App() {
   const [shouldShowModal, setShouldShowModal] = useState(false);
 
+
+//Uncontrolled onboarding flows
+const StepOne = ({ goToNext }) => (
+  <>
+  <h1>Step 1</h1>
+  <button onClick={goToNext}>Next</button>
+  </>
+  );
+
+const StepTwo = ({ goToNext }) => (
+  <>
+  <h1>Step 2</h1>
+  <button onClick={goToNext}>Next</button>
+  </>
+  );
+const StepThree = ({ goToNext }) => (
+  <>
+  <h1>Step 3</h1>
+  <button onClick={goToNext}>Next</button>
+  </>
+  );
+
   return (
     <>
     <SplitScreen leftWeight={1} rightWeight={3}>
@@ -145,6 +168,15 @@ function App() {
       <h1>Hello!</h1>
     </ControlledModal>
     <button onClick={() => setShouldShowModal(!shouldShowModal)}>{shouldShowModal ? 'Hide Modal' : 'Show Modal'}</button>
+    
+    
+    {/** Uncontrolled onboarding flows */}
+    <UncontrolledOnboardingFlow>
+        <StepOne />
+        <StepTwo />
+        <StepThree />
+    </UncontrolledOnboardingFlow>
+    <br /><br />
     </>
   );
 }

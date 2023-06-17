@@ -110,20 +110,20 @@ function App() {
 const StepOne = ({ goToNext }) => (
   <>
   <h1>Step 1</h1>
-  <button onClick={goToNext}>Next</button>
+  <button onClick={() => goToNext({ name: 'Nilz piter' })}>Next</button>
   </>
   );
 
 const StepTwo = ({ goToNext }) => (
   <>
   <h1>Step 2</h1>
-  <button onClick={goToNext}>Next</button>
+  <button onClick={() => goToNext({ age: 89 })}>Next</button>
   </>
   );
 const StepThree = ({ goToNext }) => (
   <>
   <h1>Step 3</h1>
-  <button onClick={goToNext}>Next</button>
+  <button onClick={() => goToNext({ hairColor: 'brown' })}>Next</button>
   </>
   );
 
@@ -171,7 +171,10 @@ const StepThree = ({ goToNext }) => (
     
     
     {/** Uncontrolled onboarding flows */}
-    <UncontrolledOnboardingFlow>
+    <UncontrolledOnboardingFlow onFinish={data => {
+      console.log(data);
+      alert('Onboarding complete');
+    }}>
         <StepOne />
         <StepTwo />
         <StepThree />

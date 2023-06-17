@@ -20,6 +20,7 @@ import { useState } from 'react';
 import { UncontrolledOnboardingFlow } from './Components/OnboardingFlows/UncontrolledOnboardingFlows';
 import { ControlledOnboardingFlow } from './Components/OnboardingFlows/ControlledOnboardingFlows';
 import { printProps } from './Components/HighOrderComponents/printProps';
+import { withUser } from './Components/HighOrderComponents/withUser';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -150,6 +151,9 @@ const StepThree = ({ goToNext }) => (
   //Printing props with HOCs
   const UserInfoWrapped = printProps(UserInfo);
 
+  //Loading data with HOCs
+  const UserInfoWithLoader = withUser(UserInfo, '123');
+
   return (
     <>
     <SplitScreen leftWeight={1} rightWeight={3}>
@@ -217,6 +221,9 @@ const StepThree = ({ goToNext }) => (
 
     {/** Printing props with HOCs */}
     <UserInfoWrapped a={1} b="Hello" c={{name: 'John Sigh'}} />
+
+    {/** Loading data with HOCs */}
+    <UserInfoWithLoader />
 
     <br /><br />
     </>

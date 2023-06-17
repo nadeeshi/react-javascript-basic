@@ -6,7 +6,7 @@ import { LargePersonListItem } from './Lists/Person/LargePersonListItem';
 import { SmallProductListItem } from './Lists/Products/SmallProductListItem';
 import { LargeProductListItem } from './Lists/Products/LargeProductListItem';
 import { NumberedList } from './Lists/NumberedList';
-import { Modal } from './Components/Modals/Modal';
+import { UncontrolledModal } from './Components/Modals/UncontrolledModal';
 import { CurrentUserLoader } from './Components/Container/CurrentUserLoader';
 import { UserInfo } from './Components/Container/UserInfo';
 import { UserLoader } from './Components/Container/UserLoader';
@@ -14,6 +14,9 @@ import { ResourceLoader } from './Components/Container/ResourceLoader';
 import { DataSourceLoader } from './Components/Container/DataSource';
 import axios from 'axios';
 import { UncontrolledForm } from './Components/Forms/UncontrolledForm';
+import { ControlledForm } from './Components/Forms/ControlledForm';
+import { ControlledModal } from './Components/Modals/ControlledModal';
+import { useState } from 'react';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -99,15 +102,17 @@ const getLocalStorageData = key => () => {
 const Text = ({message}) => <h1>{message}</h1>
 
 function App() {
+  const [shouldShowModal, setShouldShowModal] = useState(false);
+
   return (
     <>
     <SplitScreen leftWeight={1} rightWeight={3}>
         <LeftHandComponent name="People Details"/> 
         <RightHandComponent message="Product Details"/>
     </SplitScreen>
-    <Modal>
+    <UncontrolledModal>
         <LargeProductListItem product={products[0]}/>
-    </Modal>
+    </UncontrolledModal>
     <CurrentUserLoader>
         <UserInfo />
     </CurrentUserLoader>
@@ -128,6 +133,18 @@ function App() {
     </DataSourceLoader>
 
     <UncontrolledForm />
+
+    <ControlledForm />
+
+    <ControlledModal 
+      shouldShow={shouldShowModal}
+      onRequestClose={() => {
+        alert('Are you sure?');
+        setShouldShowModal(false);
+      }}>
+      <h1>Hello!</h1>
+    </ControlledModal>
+    <button onClick={() => setShouldShowModal(!shouldShowModal)}>{shouldShowModal ? 'Hide Modal' : 'Show Modal'}</button>
     </>
   );
 }

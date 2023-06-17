@@ -229,6 +229,8 @@ const StepThree = ({ goToNext }) => (
     {/** creating forms data with HOCs */}
     <UserInfoForm />
 
+     {/** useCurrentUser hook */}
+     <UserInfo />
     <br /><br />
     </>
   );

@@ -18,6 +18,7 @@ import { ControlledForm } from './Components/Forms/ControlledForm';
 import { ControlledModal } from './Components/Modals/ControlledModal';
 import { useState } from 'react';
 import { UncontrolledOnboardingFlow } from './Components/OnboardingFlows/UncontrolledOnboardingFlows';
+import { ControlledOnboardingFlow } from './Components/OnboardingFlows/ControlledOnboardingFlows';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -123,9 +124,27 @@ const StepTwo = ({ goToNext }) => (
 const StepThree = ({ goToNext }) => (
   <>
   <h1>Step 3</h1>
-  <button onClick={() => goToNext({ hairColor: 'brown' })}>Next</button>
+  <p>Congratulations! you qualify for our Senior discount </p>
+  <button onClick={() => goToNext({})}>Next</button>
   </>
   );
+
+  const StepFour = ({ goToNext }) => (
+    <>
+    <h1>Step 4</h1>
+    <button onClick={() => goToNext({ hairColor: 'brown' })}>Next</button>
+    </>
+    );  
+
+
+  //Controlled onboarding flows
+  const [onboardingData, setOnboardingData] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const onNext = stepData => {
+    setOnboardingData({...onboardingData, ...stepData});
+    setCurrentIndex(currentIndex + 1);
+}
 
   return (
     <>
@@ -179,6 +198,18 @@ const StepThree = ({ goToNext }) => (
         <StepTwo />
         <StepThree />
     </UncontrolledOnboardingFlow>
+    <br /><br />
+
+    {/** Controlled onboarding flows */}
+    <ControlledOnboardingFlow 
+    currentIndex={currentIndex}
+    onNext={onNext}
+    >
+        <StepOne />
+        <StepTwo />
+        { onboardingData.age >= 64 && (<StepThree />)}
+        <StepFour />
+    </ControlledOnboardingFlow>
     <br /><br />
     </>
   );

@@ -19,6 +19,9 @@ import { ControlledModal } from './Components/Modals/ControlledModal';
 import { useState } from 'react';
 import { UncontrolledOnboardingFlow } from './Components/OnboardingFlows/UncontrolledOnboardingFlows';
 import { ControlledOnboardingFlow } from './Components/OnboardingFlows/ControlledOnboardingFlows';
+import { printProps } from './Components/HighOrderComponents/printProps';
+import { withUser } from './Components/HighOrderComponents/withUser';
+import { UserInfoForm } from './Components/HighOrderComponents/userInfoForm';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -144,7 +147,13 @@ const StepThree = ({ goToNext }) => (
   const onNext = stepData => {
     setOnboardingData({...onboardingData, ...stepData});
     setCurrentIndex(currentIndex + 1);
-}
+  }
+
+  //Printing props with HOCs
+  const UserInfoWrapped = printProps(UserInfo);
+
+  //Loading data with HOCs
+  const UserInfoWithLoader = withUser(UserInfo, '123');
 
   return (
     <>
@@ -210,6 +219,16 @@ const StepThree = ({ goToNext }) => (
         { onboardingData.age >= 64 && (<StepThree />)}
         <StepFour />
     </ControlledOnboardingFlow>
+
+    {/** Printing props with HOCs */}
+    <UserInfoWrapped a={1} b="Hello" c={{name: 'John Sigh'}} />
+
+    {/** Loading data with HOCs */}
+    <UserInfoWithLoader />
+
+    {/** creating forms data with HOCs */}
+    <UserInfoForm />
+
     <br /><br />
     </>
   );

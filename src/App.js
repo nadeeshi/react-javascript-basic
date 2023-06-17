@@ -19,6 +19,7 @@ import { ControlledModal } from './Components/Modals/ControlledModal';
 import { useState } from 'react';
 import { UncontrolledOnboardingFlow } from './Components/OnboardingFlows/UncontrolledOnboardingFlows';
 import { ControlledOnboardingFlow } from './Components/OnboardingFlows/ControlledOnboardingFlows';
+import { printProps } from './Components/HighOrderComponents/printProps';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -144,7 +145,10 @@ const StepThree = ({ goToNext }) => (
   const onNext = stepData => {
     setOnboardingData({...onboardingData, ...stepData});
     setCurrentIndex(currentIndex + 1);
-}
+  }
+
+  //Printing props with HOCs
+  const UserInfoWrapped = printProps(UserInfo);
 
   return (
     <>
@@ -210,6 +214,10 @@ const StepThree = ({ goToNext }) => (
         { onboardingData.age >= 64 && (<StepThree />)}
         <StepFour />
     </ControlledOnboardingFlow>
+
+    {/** Printing props with HOCs */}
+    <UserInfoWrapped a={1} b="Hello" c={{name: 'John Sigh'}} />
+
     <br /><br />
     </>
   );

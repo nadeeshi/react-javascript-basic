@@ -17,6 +17,8 @@ import { UncontrolledForm } from './Components/Forms/UncontrolledForm';
 import { ControlledForm } from './Components/Forms/ControlledForm';
 import { ControlledModal } from './Components/Modals/ControlledModal';
 import { useState } from 'react';
+import { UncontrolledOnboardingFlow } from './Components/OnboardingFlows/UncontrolledOnboardingFlows';
+import { ControlledOnboardingFlow } from './Components/OnboardingFlows/ControlledOnboardingFlows';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -104,6 +106,46 @@ const Text = ({message}) => <h1>{message}</h1>
 function App() {
   const [shouldShowModal, setShouldShowModal] = useState(false);
 
+
+//Uncontrolled onboarding flows
+const StepOne = ({ goToNext }) => (
+  <>
+  <h1>Step 1</h1>
+  <button onClick={() => goToNext({ name: 'Nilz piter' })}>Next</button>
+  </>
+  );
+
+const StepTwo = ({ goToNext }) => (
+  <>
+  <h1>Step 2</h1>
+  <button onClick={() => goToNext({ age: 89 })}>Next</button>
+  </>
+  );
+const StepThree = ({ goToNext }) => (
+  <>
+  <h1>Step 3</h1>
+  <p>Congratulations! you qualify for our Senior discount </p>
+  <button onClick={() => goToNext({})}>Next</button>
+  </>
+  );
+
+  const StepFour = ({ goToNext }) => (
+    <>
+    <h1>Step 4</h1>
+    <button onClick={() => goToNext({ hairColor: 'brown' })}>Next</button>
+    </>
+    );  
+
+
+  //Controlled onboarding flows
+  const [onboardingData, setOnboardingData] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const onNext = stepData => {
+    setOnboardingData({...onboardingData, ...stepData});
+    setCurrentIndex(currentIndex + 1);
+}
+
   return (
     <>
     <SplitScreen leftWeight={1} rightWeight={3}>
@@ -145,6 +187,30 @@ function App() {
       <h1>Hello!</h1>
     </ControlledModal>
     <button onClick={() => setShouldShowModal(!shouldShowModal)}>{shouldShowModal ? 'Hide Modal' : 'Show Modal'}</button>
+    
+    
+    {/** Uncontrolled onboarding flows */}
+    <UncontrolledOnboardingFlow onFinish={data => {
+      console.log(data);
+      alert('Onboarding complete');
+    }}>
+        <StepOne />
+        <StepTwo />
+        <StepThree />
+    </UncontrolledOnboardingFlow>
+    <br /><br />
+
+    {/** Controlled onboarding flows */}
+    <ControlledOnboardingFlow 
+    currentIndex={currentIndex}
+    onNext={onNext}
+    >
+        <StepOne />
+        <StepTwo />
+        { onboardingData.age >= 64 && (<StepThree />)}
+        <StepFour />
+    </ControlledOnboardingFlow>
+    <br /><br />
     </>
   );
 }

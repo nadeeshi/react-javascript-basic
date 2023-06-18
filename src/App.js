@@ -24,6 +24,7 @@ import { withUser } from './Components/HighOrderComponents/withUser';
 import { UserInfoForm } from './Components/HighOrderComponents/userInfoForm';
 import { ProductInfo } from './Components/Container/ProductInfo';
 import { RecursiveComponent } from './FunctionalProgramming/RecursiveComponent';
+import { BigSuccessButton, DangerButton } from './FunctionalProgramming/composition';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -269,6 +270,10 @@ const StepThree = ({ goToNext }) => (
 
     {/** Recursive component */}
     <RecursiveComponent data={nestedObject} />
+
+    {/** component composition */}
+    <DangerButton text="don't do it!" />
+    <BigSuccessButton text="Yes!!!" />
     <br /><br />
     </>
   );

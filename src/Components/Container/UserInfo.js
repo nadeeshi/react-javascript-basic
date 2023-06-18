@@ -1,9 +1,21 @@
-import { useCurrentUser } from "../CustomHooks/useCurrentUser";
-import { useResource } from "../CustomHooks/useResource";
-import { useUser } from "../CustomHooks/useUser";
+
+import axios from "axios";
+import { useDataSource } from "../CustomHooks/useDataSource";
+
+const serverResource = resourceUrl => async () => {
+    const response = await axios.get(resourceUrl);
+
+    return response.data;
+};
+
+const localStorageResource = key => () => {
+    return localStorage.getItem(key);
+}
 
 export const UserInfo = ({ userId }) => {
-    const user = useResource(`/users/${userId}`);
+    //const user = useResource(`/users/${userId}`);
+    const user = useDataSource(serverResource(`/users/${userId}`));
+    const messgae = useDataSource(localStorageResource('message'));
 
     const {name, age, hairColor, hobbies} = user || {};
 

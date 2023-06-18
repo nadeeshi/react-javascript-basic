@@ -22,6 +22,7 @@ import { ControlledOnboardingFlow } from './Components/OnboardingFlows/Controlle
 import { printProps } from './Components/HighOrderComponents/printProps';
 import { withUser } from './Components/HighOrderComponents/withUser';
 import { UserInfoForm } from './Components/HighOrderComponents/userInfoForm';
+import { ProductInfo } from './Components/Container/ProductInfo';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -41,16 +42,19 @@ const people = [{
 }];
 
 const products = [{
+  productId: '1234',
   name: 'Piano',
   price: '$450',
   description: 'Used Piano, with great condition',
   rating: 7.8,
 }, {
+  productId: '1235',
   name: 'Iphone 14',
   price: '$200',
   description: 'Used Iphone, with great condition',
   rating: 5.8,
 }, {
+  productId: '12341',
   name: 'TV',
   price: '$150',
   description: 'Used TV, with great condition',
@@ -235,6 +239,9 @@ const StepThree = ({ goToNext }) => (
     {/** useUser hook */}
     <UserInfo userId="123" />
     <UserInfo userId="124" />
+
+    {/** useUser hook */}
+    <ProductInfo productId="1234" />
 
     <br /><br />
     </>

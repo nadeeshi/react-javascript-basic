@@ -26,6 +26,26 @@ let users = [{
     hobbies: ['dancing', 'reading', 'movie watching']
 }];
 
+let products = [{
+    productId: '1234',
+    name: 'Piano',
+    price: '$450',
+    description: 'Used Piano, with great condition',
+    rating: 7.8,
+  }, {
+    productId: '1235',
+    name: 'Iphone 14',
+    price: '$200',
+    description: 'Used Iphone, with great condition',
+    rating: 5.8,
+  }, {
+    productId: '12341',
+    name: 'TV',
+    price: '$150',
+    description: 'Used TV, with great condition',
+    rating: 3.8,
+  }];
+  
 app.get('/current-user', (req, res) => {
     res.json(currentUser);
 });
@@ -46,6 +66,24 @@ app.post('/users/:id', (req, res) => {
 
 app.get('/users', (req, res) => {
     res.json(users);
+});
+
+app.get('/products/:id', (req, res) => {
+    const { id } = req.params;
+
+    res.json(products.find(product => product.productId === id));
+});
+
+app.post('/products/:id', (req, res) => {
+    const { id } = req.params;
+    const { product:updateProduct } = req.body;
+
+    products = products.map(product => product.productId === id ? updateProduct: null );
+    res.json(products.find(product => product.productId === id));
+});
+
+app.get('/products', (req, res) => {
+    res.json(products);
 });
 
 app.listen(8080, () => {

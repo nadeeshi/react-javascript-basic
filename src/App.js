@@ -23,6 +23,7 @@ import { printProps } from './Components/HighOrderComponents/printProps';
 import { withUser } from './Components/HighOrderComponents/withUser';
 import { UserInfoForm } from './Components/HighOrderComponents/userInfoForm';
 import { ProductInfo } from './Components/Container/ProductInfo';
+import { RecursiveComponent } from './FunctionalProgramming/RecursiveComponent';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -60,6 +61,29 @@ const products = [{
   description: 'Used TV, with great condition',
   rating: 3.8,
 }];
+
+//Recursive components
+const nestedObject = {
+  a: 1,
+  b: {
+    b1: 4,
+    b2: {
+      b23: 'Hello',
+    },
+    b3: {
+      b31: {
+        message: 'Hi',
+      },
+      b32: {
+        message: 'Hi',
+      }
+    }
+  },
+  c: {
+    c1: 2,
+    c2: 3,
+  }
+}
 
 const LeftHandComponent = ({name}) => {
   return <>
@@ -243,6 +267,8 @@ const StepThree = ({ goToNext }) => (
     {/** useUser hook */}
     <ProductInfo productId="1234" />
 
+    {/** Recursive component */}
+    <RecursiveComponent data={nestedObject} />
     <br /><br />
     </>
   );

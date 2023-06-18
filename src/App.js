@@ -25,6 +25,7 @@ import { UserInfoForm } from './Components/HighOrderComponents/userInfoForm';
 import { ProductInfo } from './Components/Container/ProductInfo';
 import { RecursiveComponent } from './FunctionalProgramming/RecursiveComponent';
 import { BigSuccessButton, DangerButton } from './FunctionalProgramming/composition';
+import { BigSuccessButton1, DangerButton1 } from './FunctionalProgramming/partiallyApply';
 
 const people = [{
   name: 'Nadee Sansari',
@@ -274,6 +275,10 @@ const StepThree = ({ goToNext }) => (
     {/** component composition */}
     <DangerButton text="don't do it!" />
     <BigSuccessButton text="Yes!!!" />
+
+    {/** partially applied components */}
+    <DangerButton1 text="don't do it!" />
+    <BigSuccessButton1 text="Yes!!!" />
     <br /><br />
     </>
   );
